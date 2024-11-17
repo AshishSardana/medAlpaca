@@ -22,7 +22,7 @@ class DataHandler:
             Defaults to "prompts/medalpaca.json".
         model_max_length (int, optional):
             The maximum length of the tokenized sequence.
-            Should not exceed 2048, as LLaMA is trained with this. Defaults to 256.
+            Should not exceed 128000, as LLaMA-3.2 is trained with this. Defaults to 128000.
         train_on_inputs (bool, optional):
             If False, masks out inputs in loss. Defaults to True.
 
@@ -39,11 +39,11 @@ class DataHandler:
         self,
         tokenizer,
         prompt_template: str = "prompts/medalpaca.json",
-        model_max_length: int = 256,
+        model_max_length: int = 128000, # for llama-3.2 family
         train_on_inputs: bool = True,
     ) -> None:
-        if model_max_length > 2048:
-            logger.warn(f"{model_max_length} exceeds the max token length LLaMA was trained with.")
+        if model_max_length > 128000:
+            logger.warn(f"{model_max_length} exceeds the max token length LLaMA-3.2 was trained with.")
         self.prompt_template = load_json(prompt_template)
         self.model_max_length = model_max_length
         self.train_on_inputs = train_on_inputs
