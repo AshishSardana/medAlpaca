@@ -27,7 +27,7 @@ def main(
     model: str, # e.g. "decapoda-research/llama-7b-hf"
     val_set_size: Union[int, float] = 0.1,
     prompt_template: str = "prompts/medalpaca.json",
-    model_max_length: int = 256,  # should not exceed 2048, as LLaMA is trained with this
+    model_max_length: int = 128000,  # should not exceed 128000, as LLaMA-3.2 is trained with this
     train_on_inputs: bool = True,  # if False, masks out inputs in loss
     data_path: str = "medical_meadow_small.json",
     train_in_8bit: bool = True,
@@ -69,7 +69,7 @@ def main(
     prompt_template (str, optional):
         The path to the JSON file containing prompt templates. Default is "prompts/medalpaca.json".
     model_max_length (int, optional):
-        The maximum length for model inputs. Default is 256.
+        The maximum length for model inputs. Default is 128000.
     train_on_inputs (bool, optional):
         Whether to train on input tokens. Default is True.
     data_path (str, optional):
